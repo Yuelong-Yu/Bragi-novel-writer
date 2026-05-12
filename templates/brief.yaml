@@ -1,6 +1,12 @@
 # Novel Brief Template
 # Fill in as much or as little as you want. Empty fields = Architect decides.
 
+# --- Mode ---
+# original:   From scratch, full creative freedom
+# adaptation: Rewrite/remix based on an existing work with mapping rules
+# expansion:  Expand a short draft into a full-length novel
+mode: "original"
+
 # --- Core Identity ---
 logline: ""                    # One-sentence story hook
 genre: ""                      # Primary genre (玄幻, 都市, 科幻, 言情, 悬疑, etc.)
@@ -21,11 +27,22 @@ must_avoid: []                 # Hard constraints (tropes to avoid, content limi
 reference_works: []            # Books/series to draw inspiration from (NOT copy)
 style_notes: ""                # Prose style preferences (spare, lush, cinematic, literary, etc.)
 
+# --- Adaptation (required when mode=adaptation) ---
+adaptation:
+  source_work: ""              # Name of the original work to adapt from
+  adaptation_idea: ""          # Free-text description of the rewrite vision (1-3 paragraphs)
+  mapping_hints: []            # Optional structured mapping pairs
+  # Example:
+  #   - original: "萧炎 (废柴少年)"
+  #     target: "陈峰 (落魄交易员)"
+  #   - original: "斗气大陆"
+  #     target: "华尔街金融圈"
+
 # --- Input Materials ---
-# Paths to existing materials (relative to output directory). Leave empty for cold start.
+# Paths to existing materials (relative to output directory).
 existing_outline: ""           # Path to user-provided outline
 existing_world: ""             # Path to user-provided world document
-existing_draft: ""             # Path to user-provided prose draft
+existing_draft: ""             # Path to user-provided prose draft (required when mode=expansion)
 existing_characters: ""        # Path to user-provided character sheets
 
 # --- Model Configuration ---

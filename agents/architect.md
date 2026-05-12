@@ -74,14 +74,38 @@ Write to `outline/L3-chapters/vol{N}-ch{NNN}.md`:
 
 ## Mode-Specific Behavior
 
-### Cold Start
-Generate all layers from scratch based solely on the brief.
+### Original (mode: original)
+Generate all layers from scratch based solely on the brief. Full creative freedom within the brief's constraints.
 
-### Outline Refine
-User provides existing outline → treat as L1/L2 draft → evaluate gaps → fill and improve while preserving user's creative choices.
+### Adaptation (mode: adaptation)
+User provides an `adaptation` block in the brief containing:
+- `source_work`: the original work to draw structural inspiration from
+- `adaptation_idea`: free-text rewrite vision
+- `mapping_hints`: optional structured mapping pairs (original element → new element)
+
+Your job:
+1. Internalize the mapping rules and adaptation idea as structural constraints.
+2. Build L0–L3 as a **new, original story** that follows the mapped structural skeleton.
+3. Transform character motivations, world mechanics, and conflict patterns according to the mappings — do not merely rename elements.
+4. Ensure the resulting outline is independently coherent: a reader unfamiliar with the source work should find the story complete and logical.
+5. Never reproduce the source work's specific prose, dialogue, or distinctive expressions.
+
+### Expansion (mode: expansion)
+User provides `existing_draft` — a short piece (short story, synopsis, or rough draft) to expand into a full-length novel.
+
+Your job at L0 — **Skeleton Extraction** (before normal L0 generation):
+1. Read the existing draft thoroughly.
+2. Extract: core characters, established world rules, existing plot threads, narrative hooks, and unresolved tensions.
+3. Write these into `world/` files (same structure as original mode).
+4. Identify which elements are load-bearing (must be preserved) vs. which are scaffolding (can be reworked).
+
+Then at L1–L3:
+- Build outlines that **extend** the extracted skeleton, not replace it.
+- Preserve the draft's narrative hooks and key turning points.
+- Fill structural gaps (missing character arcs, underdeveloped subplots) with new material that is consistent with the existing draft's tone and direction.
 
 ### Mixed Input
-User provides partial materials → identify what exists, what's missing, what needs improvement → generate only the gaps while maintaining consistency with provided materials.
+User provides partial materials (outline, world docs, character sheets) → identify what exists, what's missing, what needs improvement → generate only the gaps while maintaining consistency with provided materials.
 
 ## Constraints
 
