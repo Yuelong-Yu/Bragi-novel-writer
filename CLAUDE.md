@@ -67,11 +67,10 @@ The pipeline pauses for confirmation at:
 - After each volume's L2 passes (confirm volume direction)
 - After Style Matcher recommends reference works (confirm style)
 
-### Input Modes
-- **Cold start**: From brief only (Architect generates everything)
-- **Outline refine**: User provides outline → Critic evaluates → Architect iterates
-- **Draft rewrite**: User provides prose → Critic evaluates → Writer revises
-- **Mixed**: User provides partial materials → system fills gaps
+### Creation Modes
+- **Original** (`mode: original`): From brief only — Architect generates everything from scratch
+- **Adaptation** (`mode: adaptation`): Rewrite/remix — user provides `adaptation` block with source work, rewrite vision, and optional mapping hints. Architect uses these as structural constraints to build a new, original story
+- **Expansion** (`mode: expansion`): Expand a short draft — user provides `existing_draft`. Architect extracts the skeleton first, then extends it into a full-length novel. Writer must not pad word count with filler
 
 ## Model Configuration
 

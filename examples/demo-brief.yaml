@@ -1,6 +1,8 @@
 # Demo Brief — 末日种田：我在废土建了个农场
 # A post-apocalyptic farming story with survival + slice-of-life elements
 
+mode: "original"
+
 logline: "核冬天后的第三年，前植物学研究员在废土上种出了第一棵会发光的麦子，引来了三个势力的注意。"
 genre: "科幻"
 sub_genre: "末日种田 / 废土生存"
@@ -31,9 +33,24 @@ reference_works:
 
 style_notes: "偏冷静克制的叙事风格，不煽情，用细节说话"
 
+adaptation:
+  source_work: ""
+  adaptation_idea: ""
+  mapping_hints: []
+  # Example for adaptation mode:
+  #   source_work: "斗破苍穹"
+  #   adaptation_idea: "将修仙废柴逆袭的核心结构移植到现代华尔街金融背景。保留'天才陨落→底层重来→逐级突破'的骨架，但所有冲突改为商业博弈。"
+  #   mapping_hints:
+  #     - original: "萧炎 (天才少年失去斗气)"
+  #       target: "陈峰 (明星交易员被陷害爆仓)"
+  #     - original: "斗气大陆等级体系"
+  #       target: "华尔街交易员晋升体系 (实习→VP→MD→合伙人)"
+  #     - original: "药老 (戒指里的灵魂导师)"
+  #       target: "老陈 (已故恩师留下的交易笔记)"
+
 existing_outline: ""
 existing_world: ""
-existing_draft: ""
+existing_draft: ""             # Required when mode=expansion
 existing_characters: ""
 
 models:

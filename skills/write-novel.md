@@ -31,15 +31,14 @@ Style Matcher → Human Checkpoint → Writer → Prose Critic ─→ (iterate u
 ### Phase 0: Initialize
 
 1. Read `brief.yaml` and validate required fields
-2. Determine mode:
-   - `cold_start`: No existing materials → generate everything
-   - `outline_refine`: `existing_outline` provided → critic-first, then architect iterates
-   - `draft_rewrite`: `existing_draft` provided → critic-first on prose, writer revises
-   - `mixed`: Partial materials → identify gaps, generate missing pieces
+2. Read `mode` field and validate mode-specific requirements:
+   - `original`: No additional requirements
+   - `adaptation`: `adaptation` block must be present with at least `source_work` or `adaptation_idea` filled → **error if missing**: "改写模式需要填写 adaptation 区块"
+   - `expansion`: `existing_draft` must be provided → **error if missing**: "扩写模式需要提供 existing_draft"
 3. Create output directory: `output/《{project_name}》/`
 4. Create subdirectories: `world/`, `outline/`, `outline/L3-chapters/`, `manuscript/`, `feedback/`, `final/`
 5. Copy brief to output directory
-6. Initialize `state.yaml` from template
+6. Initialize `state.yaml` from template (set `mode` from brief)
 7. If existing materials provided, copy them to appropriate directories
 
 ### Phase 1: L0 — Story Core
@@ -47,7 +46,10 @@ Style Matcher → Human Checkpoint → Writer → Prose Critic ─→ (iterate u
 **Agent**: Architect (`agents/architect.md`)
 
 1. Set `state.yaml`: `current_phase: L0`, `structure.L0.status: in_progress`
-2. Invoke Architect with brief + mode context
+2. Invoke Architect with brief + mode context:
+   - **original**: Architect generates from scratch
+   - **adaptation**: Architect also receives `adaptation` block (source_work, adaptation_idea, mapping_hints) as structural constraints
+   - **expansion**: Architect first reads `existing_draft`, performs skeleton extraction (extract characters, world rules, plot threads, hooks), then writes world files based on extracted skeleton
 3. Architect writes: `world/core.md`, `world/setting.md`, `world/characters.md`, `world/timeline.md`
 4. Invoke Structure Critic (`agents/structure-critic.md`) with `rubrics/structure-rubric.md`
 5. Critic writes: `feedback/structure-review-r{N}.md`

@@ -86,8 +86,20 @@ Write to `manuscript/vol{N}/ch{NNN}.md`:
 
 ## Mode-Specific Behavior
 
-### Cold Start / Standard
-Generate chapter from outline beat sheet.
+### Original (mode: original)
+Generate chapter from outline beat sheet. Full creative freedom within the style guide.
+
+### Adaptation (mode: adaptation)
+Generate chapter from outline beat sheet. The outline was built from adaptation mapping rules — execute the outline faithfully. Do not reference or reproduce the source work's specific prose, dialogue, or distinctive expressions.
+
+### Expansion (mode: expansion)
+Generate chapter from outline beat sheet, which was derived from the user's existing draft.
+
+Key rules:
+- Every expanded section must advance plot, character arc, or world revelation. **Do not pad word count with filler.**
+- Preserve the narrative voice and hooks from the original draft.
+- When expanding scenes that existed in the draft, deepen them with subtext, sensory detail, and character interiority — do not simply stretch the same content with more words.
+- When adding new scenes not in the original draft, ensure they connect to established plot threads.
 
 ### Draft Rewrite
 User provides existing prose → identify weaknesses per rubric → rewrite while preserving the author's voice and intent where they work.

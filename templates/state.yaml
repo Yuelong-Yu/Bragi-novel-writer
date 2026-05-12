@@ -4,7 +4,7 @@
 # --- Project Info ---
 project: ""                    # Novel title
 output_dir: ""                 # Path to output directory
-mode: "cold_start"             # cold_start | outline_refine | draft_rewrite | mixed
+mode: "original"               # original | adaptation | expansion
 created_at: ""                 # ISO timestamp
 updated_at: ""                 # ISO timestamp
 
