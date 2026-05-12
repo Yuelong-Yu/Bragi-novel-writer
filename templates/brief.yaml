@@ -1,0 +1,57 @@
+# Novel Brief Template
+# Fill in as much or as little as you want. Empty fields = Architect decides.
+
+# --- Core Identity ---
+logline: ""                    # One-sentence story hook
+genre: ""                      # Primary genre (玄幻, 都市, 科幻, 言情, 悬疑, etc.)
+sub_genre: ""                  # Sub-genre or genre blend
+tone: ""                       # Dark, light, humorous, gritty, whimsical, etc.
+target_audience: ""            # Demographics and reading preferences
+themes: []                     # Central themes to explore
+
+# --- Scope ---
+word_count: 1000000            # Total target word count
+volumes: 3                     # Number of volumes
+chapter_length: 3000           # Target words per chapter
+chapters_per_volume: ~         # Leave empty to auto-calculate from word_count
+
+# --- Creative Direction ---
+must_have: []                  # Non-negotiable elements (plot, character, setting requirements)
+must_avoid: []                 # Hard constraints (tropes to avoid, content limits)
+reference_works: []            # Books/series to draw inspiration from (NOT copy)
+style_notes: ""                # Prose style preferences (spare, lush, cinematic, literary, etc.)
+
+# --- Input Materials ---
+# Paths to existing materials (relative to output directory). Leave empty for cold start.
+existing_outline: ""           # Path to user-provided outline
+existing_world: ""             # Path to user-provided world document
+existing_draft: ""             # Path to user-provided prose draft
+existing_characters: ""        # Path to user-provided character sheets
+
+# --- Model Configuration ---
+# Specify model per agent. Use any model ID your provider supports.
+models:
+  architect: "claude-opus-4-6"
+  structure_critic: "claude-sonnet-4-6"
+  writer: "claude-opus-4-6"
+  prose_critic: "claude-sonnet-4-6"
+
+# Presets override individual model settings:
+#   quality:  All Opus
+#   balanced: Opus generators, Sonnet critics
+#   budget:   All Sonnet/Haiku
+#   cn-local: DeepSeek/Qwen (for Chinese content)
+model_preset: "balanced"
+
+# --- Quality Settings ---
+quality:
+  structure_threshold: 7.0     # Minimum weighted score to pass structure review
+  prose_threshold: 7.0         # Minimum weighted score to pass prose review
+  min_dimension_score: 5.0     # No single rubric dimension below this
+  max_structure_rounds: 5      # Max Architect-Critic iterations before human flag
+  max_prose_rounds: 3          # Max Writer-Critic iterations per chapter
+
+# --- Style Matcher ---
+# Set to true to have the system auto-recommend a reference work and extract style guide
+auto_style_match: true
+style_match_criteria: ""       # Additional criteria for style matching (optional)

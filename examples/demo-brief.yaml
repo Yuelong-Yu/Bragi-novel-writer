@@ -1,0 +1,54 @@
+# Demo Brief — 末日种田：我在废土建了个农场
+# A post-apocalyptic farming story with survival + slice-of-life elements
+
+logline: "核冬天后的第三年，前植物学研究员在废土上种出了第一棵会发光的麦子，引来了三个势力的注意。"
+genre: "科幻"
+sub_genre: "末日种田 / 废土生存"
+tone: "温暖底色 + 生存压力，七分日常三分危机"
+target_audience: "18-35岁网文读者，喜欢种田经营类但不想太甜"
+themes:
+  - 在废墟中重建文明的意义
+  - 科技是工具还是诅咒
+  - 信任的成本
+
+word_count: 500000
+volumes: 2
+chapter_length: 3000
+chapters_per_volume: ~
+
+must_have:
+  - 硬核的植物学/农业知识（不能纯靠金手指）
+  - 至少一个道德灰色地带的重大抉择
+  - 势力之间不是简单的善恶对立
+must_avoid:
+  - 后宫
+  - 无脑升级打怪
+  - 主角无所不能
+
+reference_works:
+  - "《北京折叠》- 郝景芳"
+  - "《流浪地球》- 刘慈欣"
+
+style_notes: "偏冷静克制的叙事风格，不煽情，用细节说话"
+
+existing_outline: ""
+existing_world: ""
+existing_draft: ""
+existing_characters: ""
+
+models:
+  architect: "claude-opus-4-6"
+  structure_critic: "claude-sonnet-4-6"
+  writer: "claude-opus-4-6"
+  prose_critic: "claude-sonnet-4-6"
+model_preset: "balanced"
+
+quality:
+  structure_threshold: 7.0
+  prose_threshold: 7.0
+  min_dimension_score: 5.0
+  max_structure_rounds: 5
+  max_prose_rounds: 3
+
+auto_style_match: true
+style_match_criteria: "偏刘慈欣的理工科冷叙事，但比大刘多一点人物温度"

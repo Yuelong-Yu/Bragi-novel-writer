@@ -1,0 +1,64 @@
+# Orchestration State Template
+# This file is managed by the orchestrator. Do not edit manually during a run.
+
+# --- Project Info ---
+project: ""                    # Novel title
+output_dir: ""                 # Path to output directory
+mode: "cold_start"             # cold_start | outline_refine | draft_rewrite | mixed
+created_at: ""                 # ISO timestamp
+updated_at: ""                 # ISO timestamp
+
+# --- Overall Status ---
+status: "pending"              # pending | running | awaiting_human | completed | failed
+current_phase: "L0"           # L0 | L1 | L2 | L3 | L4_writing | style_match | done
+current_volume: 1
+current_chapter: 0
+error: ""                      # Error message if status=failed
+
+# --- Structure Progress ---
+structure:
+  L0:
+    status: "pending"          # pending | in_progress | passed | failed | human_flag
+    score: 0.0
+    rounds: 0
+    last_feedback: ""          # Path to latest feedback file
+  L1:
+    status: "pending"
+    score: 0.0
+    rounds: 0
+    last_feedback: ""
+  L2:
+    volumes: {}                # vol1: {status, score, rounds, last_feedback}
+  L3:
+    status: "pending"          # Overall L3 status
+    chapters: {}               # vol1-ch001: {status, score, rounds}
+
+# --- Style ---
+style:
+  status: "pending"            # pending | recommended | confirmed | skipped
+  recommended_work: ""         # AI-recommended reference work
+  style_guide_path: ""         # Path to generated style guide
+
+# --- Prose Progress ---
+chapters: {}
+  # ch001:
+  #   status: "pending"        # pending | in_progress | passed | failed | human_flag
+  #   score: 0.0
+  #   rounds: 0
+  #   last_feedback: ""
+  #   word_count: 0
+
+# --- Human Checkpoints ---
+checkpoints:
+  L0_confirmed: false
+  L1_confirmed: false
+  style_confirmed: false
+  volumes_confirmed: {}        # vol1: true/false
+
+# --- Metrics ---
+metrics:
+  total_tokens_used: 0
+  total_iterations: 0
+  chapters_completed: 0
+  chapters_total: 0
+  estimated_word_count: 0
