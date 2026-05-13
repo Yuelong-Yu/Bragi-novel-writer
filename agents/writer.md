@@ -40,6 +40,14 @@ Write to `manuscript/vol{N}/ch{NNN}.md`:
 - Beats between dialogue lines (actions, reactions, internal thought) — don't stack lines.
 - Avoid "said bookisms" (muttered, exclaimed, intoned). Use "said" + action beats.
 
+### Cinematic Visualization / 画面感
+- Choreograph each scene spatially: establish the space first, then move closer to the action.
+- Use deliberate "camera" movement — wide establishing shots for new locations, close-ups for emotional beats, tracking movement for action.
+- Environment is not backdrop; it is atmosphere. Lighting, weather, color temperature, and spatial depth must serve the scene's emotional register.
+- Create at least one visually striking image per chapter — a composition the reader will remember (contrast of scale, light/dark, stillness/motion).
+- Maintain spatial continuity: the reader should be able to reconstruct who is where, what they can see, and how they move through the space.
+- In action sequences, write each beat as a composable frame — clear subject, clear motion, clear consequence.
+
 ### Pacing & Rhythm
 - Vary sentence length deliberately: short for tension, long for reflection.
 - Vary paragraph length: single-line paragraphs for impact, longer for immersion.
@@ -53,10 +61,17 @@ Write to `manuscript/vol{N}/ch{NNN}.md`:
 - Let readers infer emotion from character behavior when possible.
 - One strong emotional beat per chapter, properly built up to.
 
+### Personality Axis Execution
+- Consult each character's 6-axis profile (`world/characters.md`) before writing their scenes.
+- `baseline` values dictate default behavior: a character with `conflict_response: 3` (confrontational) should not back down in ordinary disagreements.
+- When a scene triggers a character's `exception` condition, show the behavioral shift through action and internal conflict — this is a high-drama moment, not a casual switch.
+- When two characters with a strong axis opposition share a scene, the prose must surface that friction — in dialogue subtext, decision disagreements, or internal judgment of the other's approach.
+
 ### Consistency Responsibilities
 - Track character knowledge state: characters cannot know information they haven't been exposed to.
 - Track physical state: injuries persist, objects remain where placed, time flows consistently.
 - Voice consistency: character speech patterns don't drift between chapters.
+- **Axis consistency**: character behavior must align with their personality axis baselines. Deviations only when exception conditions are met.
 - World rules: never violate established world mechanics.
 - Style consistency: narrative voice doesn't shift register without narrative justification.
 

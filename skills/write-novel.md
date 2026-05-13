@@ -51,7 +51,7 @@ Style Matcher → Human Checkpoint → Writer → Prose Critic ─→ (iterate u
    - **adaptation**: Architect also receives `adaptation` block (source_work, adaptation_idea, mapping_hints) as structural constraints
    - **expansion**: Architect first reads `existing_draft`, performs skeleton extraction (extract characters, world rules, plot threads, hooks), then writes world files based on extracted skeleton
 3. Architect writes: `world/core.md`, `world/setting.md`, `world/characters.md`, `world/timeline.md`
-4. Invoke Structure Critic (`agents/structure-critic.md`) with `rubrics/structure-rubric.md`
+4. Invoke Structure Critic (`agents/architecture-critic.md`) with `rubrics/architecture-rubric.md`
 5. Critic writes: `feedback/structure-review-r{N}.md`
 6. Check verdict:
    - **PASS** → update state, proceed to Human Checkpoint
@@ -122,7 +122,7 @@ For each chapter in order:
    - Style guide (`world/style-guide.md`)
    - Previous 2 chapters (for continuity)
 3. Writer writes: `manuscript/vol{N}/ch{NNN}.md`
-4. Prose Critic (`agents/prose-critic.md`) evaluates with `rubrics/prose-rubric.md`
+4. Prose Critic (`agents/writing-critic.md`) evaluates with `rubrics/writing-rubric.md`
 5. Critic writes: `feedback/prose-ch{NNN}-r{N}.md`
 6. Check verdict:
    - **PASS** → update state, move to next chapter
@@ -170,9 +170,9 @@ All agent coordination happens through files:
 | Agent | Reads | Writes |
 |-------|-------|--------|
 | Architect | `brief.yaml`, `feedback/structure-review-*.md` | `world/*`, `outline/*` |
-| Structure Critic | `world/*`, `outline/*`, `brief.yaml`, `rubrics/structure-rubric.md` | `feedback/structure-review-*.md` |
+| Structure Critic | `world/*`, `outline/*`, `brief.yaml`, `rubrics/architecture-rubric.md` | `feedback/structure-review-*.md` |
 | Writer | `outline/L3-chapters/*`, `world/*`, `manuscript/*` (prev chapters), `feedback/prose-*.md` | `manuscript/vol*/ch*.md` |
-| Prose Critic | `manuscript/vol*/ch*.md`, `outline/L3-chapters/*`, `world/style-guide.md`, `rubrics/prose-rubric.md` | `feedback/prose-*.md` |
+| Prose Critic | `manuscript/vol*/ch*.md`, `outline/L3-chapters/*`, `world/style-guide.md`, `rubrics/writing-rubric.md` | `feedback/prose-*.md` |
 | Orchestrator | `state.yaml`, all of the above | `state.yaml`, `final/*` |
 
 No direct agent-to-agent message passing. The orchestrator mediates all communication by reading outputs and passing them as inputs to the next agent.

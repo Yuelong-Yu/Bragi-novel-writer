@@ -9,7 +9,7 @@ Scoring criteria for evaluating structural output (L0–L3): world-building, cha
 | 1 | Conflict Driving Force & Immersion | 20% | Is the story engine compelling? |
 | 2 | Character Dimensionality & Differentiation | 20% | Are characters real and distinct? |
 | 3 | World Consistency & Novelty | 15% | Does the world work and surprise? |
-| 4 | Pacing Density | 20% | Does every chapter earn its place? |
+| 4 | Fractal Tension / 分形张力 | 20% | Does tension exist at every scale? |
 | 5 | Hook & Suspense Design | 15% | Will readers keep turning pages? |
 | 6 | Genre Innovation | 10% | Is it fresh within its category? |
 
@@ -48,15 +48,20 @@ Scoring criteria for evaluating structural output (L0–L3): world-building, cha
 - Transformation arcs (genuine change, not just events)
 - Relationship tension (allies disagree on something fundamental)
 - Cast differentiation (no two characters serve the same function)
+- **Personality axes present**: each major character has 6-axis profile with baseline + exception
+- **Axis exceptions are meaningful**: exceptions reveal genuine contradictions, not trivial quirks
+- **Axis Contrast Map present**: major character pairs have at least 1 strong opposition (difference ≥ 5)
+- **Contrast produces conflict**: every strong axis opposition generates at least one conflict scene in the outline
+- **Exceptions are triggered**: every character's exception is activated at least once in the story
 
 **Score guide:**
 | Score | Description |
 |-------|-------------|
-| 9–10 | Characters feel like real people with unique voices. Arcs are transformative. |
-| 7–8 | Well-developed with clear differentiation. Arcs track meaningfully. |
-| 5–6 | Characters functional but some feel interchangeable or lack depth. |
-| 3–4 | Thin characters. Similar voices. Arcs are superficial or absent. |
-| 1–2 | Cardboard cutouts. No differentiation or internal life. |
+| 9–10 | Characters feel like real people. 6-axis profiles are nuanced with compelling exceptions. Axis contrasts between characters drive organic conflict. Every exception fires in the story. |
+| 7–8 | Well-developed with clear differentiation. Axis profiles present and mostly leveraged. Most contrasts produce conflict scenes. |
+| 5–6 | Characters functional but axis profiles feel formulaic. Some contrasts exist on paper but aren't exploited in the plot. Exceptions underused. |
+| 3–4 | Thin characters. Axis profiles missing or generic. No deliberate contrast design between characters. |
+| 1–2 | Cardboard cutouts. No personality axis system. No differentiation or internal life. |
 
 ---
 
@@ -80,23 +85,27 @@ Scoring criteria for evaluating structural output (L0–L3): world-building, cha
 
 ---
 
-## 4. Pacing Density (20%)
+## 4. Fractal Tension / 分形张力 (20%)
+
+**Core principle:** A good novel has tension at every scale of magnification — like a fractal. Zoom to arc level: major reversals and escalations. Zoom to chapter level: turning points and cliffhangers. Zoom to scene level: micro-conflicts and obstacles. Zoom to paragraph level: information gaps and micro-suspense. The low-frequency, high-amplitude main arc and the high-frequency, constantly undulating scene-level hooks must coexist and reinforce each other.
 
 **What to evaluate:**
-- Every chapter advances plot, character, or world (no filler)
-- Tension variation across chapters (not flat)
+- **Multi-scale tension presence**: tension is detectable at arc, chapter, scene, and paragraph granularity simultaneously
+- **Frequency interplay**: high-frequency scene-level micro-conflicts propel the low-frequency main arc forward (not just filler between plot points)
+- **No dead zones at any scale**: every chapter advances plot, character, or world; every scene has resistance; every page has a reason to keep reading
+- Tension variation across chapters (not flat — deliberate peaks and valleys)
 - Setup-to-payoff ratio appropriate for genre
-- Quiet moments are earned and purposeful
+- Quiet moments are earned, purposeful, and still contain sub-surface tension
 - Word count allocation matches scene importance
 
 **Score guide:**
 | Score | Description |
 |-------|-------------|
-| 9–10 | Every chapter is essential. Rhythm feels intentional and dynamic. |
-| 7–8 | Well-paced with appropriate variation. Minor trimming possible. |
-| 5–6 | Some flat stretches or rushed sections. Uneven density. |
-| 3–4 | Significant pacing issues. Filler chapters or rushed climaxes. |
-| 1–2 | No sense of pacing. Random event density. |
+| 9–10 | True fractal tension. Every scale has its own rhythm. Micro-conflicts feed macro-arcs seamlessly. Impossible to find a dull page. |
+| 7–8 | Strong multi-scale tension. Main arc compelling with good scene-level hooks. Occasional flat stretches at one scale. |
+| 5–6 | Tension exists at arc level but scene-level hooks are uneven. Some chapters coast on plot momentum alone. |
+| 3–4 | Tension only at macro level. Chapters feel like filler between major events. No micro-conflict design. |
+| 1–2 | No tension design at any scale. Events happen without resistance or rhythm. |
 
 ---
 
