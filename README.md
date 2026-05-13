@@ -12,19 +12,18 @@ Named after the Norse god of poetry — son of Odin.
 bragi/
 ├── agents/              # Agent prompt definitions
 │   ├── architect.md     # World-building + plotting (L0-L3)
-│   ├── structure-critic.md  # Evaluates structure quality
+│   ├── architecture-critic.md  # Evaluates structure quality
 │   ├── writer.md        # Generates chapter prose (L4)
-│   └── prose-critic.md  # Evaluates prose quality
+│   └── writing-critic.md  # Evaluates prose quality
 ├── rubrics/             # Scoring criteria
-│   ├── structure-rubric.md  # 6 dimensions for L0-L3
-│   └── prose-rubric.md      # 7 dimensions for L4
+│   ├── architecture-rubric.md  # 6 dimensions for L0-L3
+│   └── writing-rubric.md      # 8 dimensions for L4
 ├── templates/           # Input/state templates
-│   ├── brief.yaml       # Novel brief input format
+│   ├── brief.yaml       # Novel brief input format (blank)
+│   ├── demo-brief.yaml  # Example novel brief (filled in)
 │   └── state.yaml       # Orchestration state machine
 ├── skills/              # Orchestrator workflows
 │   └── write-novel.md   # Main generation pipeline
-└── examples/            # Sample inputs
-    └── demo-brief.yaml  # Example novel brief
 ```
 
 ## How to Run

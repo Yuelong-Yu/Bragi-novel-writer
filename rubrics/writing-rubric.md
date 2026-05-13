@@ -6,13 +6,14 @@ Scoring criteria for evaluating chapter prose (L4).
 
 | # | Dimension | Weight | Focus |
 |---|-----------|--------|-------|
-| 1 | Scene Rendering (Show vs Tell) | 20% | Are moments lived, not summarized? |
+| 1 | Scene Rendering (Show vs Tell) | 15% | Are moments lived, not summarized? |
 | 2 | Dialogue Naturalness & Character Voice | 15% | Do characters sound real and distinct? |
-| 3 | Sensory Detail Density | 15% | Can the reader feel the scene? |
-| 4 | Pacing & Readability | 15% | Does rhythm serve content? |
-| 5 | Emotional Resonance & Immersion | 15% | Does the reader feel something? |
-| 6 | AI Artifact Absence | 10% | Does it read as human-written? |
-| 7 | Outline Execution Completeness | 10% | Were all beats delivered? |
+| 3 | Sensory Detail Density | 10% | Can the reader feel the scene? |
+| 4 | Cinematic Visualization / 画面感 | 15% | Can the reader "see" it like a movie? |
+| 5 | Pacing & Readability | 15% | Does rhythm serve content? |
+| 6 | Emotional Resonance & Immersion | 12% | Does the reader feel something? |
+| 7 | AI Artifact Absence | 8% | Does it read as human-written? |
+| 8 | Outline Execution Completeness | 10% | Were all beats delivered? |
 
 ## Pass Threshold
 
@@ -22,7 +23,7 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 1. Scene Rendering / Show vs Tell (20%)
+## 1. Scene Rendering / Show vs Tell (15%)
 
 **What to evaluate:**
 - Key emotional/dramatic moments rendered as scenes (not summarized)
@@ -61,7 +62,7 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 3. Sensory Detail Density (15%)
+## 3. Sensory Detail Density (10%)
 
 **What to evaluate:**
 - At least 2 senses engaged per scene (not just visual)
@@ -81,7 +82,28 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 4. Pacing & Readability (15%)
+## 4. Cinematic Visualization / 画面感 (15%)
+
+**What to evaluate:**
+- Spatial choreography: scenes have a clear "camera" — establishing shots, mid-shots, close-ups arranged with intent
+- Dynamic motion: action sequences read like storyboards, each beat composable into a visual frame
+- Environment-as-mood: setting descriptions don't just list objects — lighting, weather, color temperature, and spatial depth serve the emotional register of the scene
+- Visual contrast and impact: memorable images created through juxtaposition (scale contrast, light/dark, stillness/motion, beauty/horror)
+- Continuity of spatial logic: the reader can mentally reconstruct character positions, movement paths, and sight lines throughout a scene
+- Focal point discipline: each scene has a dominant visual image the reader's mental eye is drawn to
+
+**Score guide:**
+| Score | Description |
+|-------|-------------|
+| 9–10 | Cinematic mastery. Every scene plays like a directed film sequence. Visual contrasts create indelible images. Spatial logic is flawless. |
+| 7–8 | Strong visual quality. Most scenes have clear spatial choreography and mood-serving environments. Occasional flat compositions. |
+| 5–6 | Adequate but static. Some scenes visualize well; others read like stage directions or floating dialogue. Environment is backdrop, not atmosphere. |
+| 3–4 | Weak visualization. Scenes lack spatial awareness. No deliberate camera movement or visual contrast. Reader cannot picture the space. |
+| 1–2 | No visual imagination. Pure abstraction or talking heads in a void. |
+
+---
+
+## 5. Pacing & Readability (15%)
 
 **What to evaluate:**
 - Sentence length variation (deliberate, not random)
@@ -101,7 +123,7 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 5. Emotional Resonance & Immersion (15%)
+## 6. Emotional Resonance & Immersion (12%)
 
 **What to evaluate:**
 - Emotional beats earned through prior setup
@@ -121,7 +143,7 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 6. AI Artifact Absence (10%)
+## 7. AI Artifact Absence (8%)
 
 **What to evaluate — these are red flags:**
 - "As a [role/title], [character] felt..." constructions
@@ -146,7 +168,7 @@ Scoring criteria for evaluating chapter prose (L4).
 
 ---
 
-## 7. Outline Execution Completeness (10%)
+## 8. Outline Execution Completeness (10%)
 
 **What to evaluate:**
 - ALL beats from the chapter outline are present in the prose

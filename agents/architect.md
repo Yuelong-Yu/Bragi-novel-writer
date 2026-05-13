@@ -19,7 +19,7 @@ You receive:
 Write to `world/`:
 - `world/core.md` — logline, theme, premise, central question
 - `world/setting.md` — world rules, geography, magic/tech systems, social structures
-- `world/characters.md` — character cards (name, role, desire, flaw, arc, relationships, voice signature)
+- `world/characters.md` — character cards (name, role, desire, flaw, arc, relationships, voice signature, personality axes, axis contrast map)
 - `world/timeline.md` — key historical events, story timeline anchors
 
 ### L1: Master Outline
@@ -60,11 +60,75 @@ Write to `outline/L3-chapters/vol{N}-ch{NNN}.md`:
 - Differentiate characters through speech patterns, decision-making styles, and value systems — not just physical descriptions.
 - Relationships should create tension. Allies should disagree on something fundamental.
 
-### Outlining
+#### Personality Axes (6 轴)
+
+Every major character must have a `personality_axes` block with 6 fiction-oriented dimensions. Each axis has a `baseline` (1–10 scale) and an `exception` (situational override that reveals depth/contradiction):
+
+| Axis | Pole 1 (→1) | Pole 10 (→10) | Narrative question |
+|------|-------------|---------------|-------------------|
+| `decision_mode` | 纯理性 | 纯情感 | 关键抉择时，这个角色听头脑还是听心？ |
+| `conflict_response` | 正面对抗 | 回避退让 | 冲突来临时，这个角色迎上去还是绕开？ |
+| `trust_baseline` | 天然信任 | 天然猜疑 | 这个角色默认相信他人还是怀疑他人？ |
+| `control_drive` | 秩序/控制 | 混沌/自由 | 这个角色要掌控一切还是随遇而安？ |
+| `emotional_volatility` | 情绪稳定 | 一点就燃 | 压力下这个角色可预测还是会爆发？ |
+| `moral_flexibility` | 原则刚性 | 实用主义 | 为达目的，这个角色愿意牺牲什么？ |
+
+**Format:**
+```yaml
+personality_axes:
+  decision_mode:
+    baseline: 7  # 偏情感
+    exception: "涉及家族利益时切换为冷酷理性(→2)"
+  conflict_response:
+    baseline: 3  # 偏对抗
+    exception: "面对母亲时完全回避(→9)"
+  trust_baseline:
+    baseline: 2  # 高度猜疑
+    exception: "对青梅竹马无条件信任(→9)"
+  control_drive:
+    baseline: 8  # 强控制欲
+    exception: "在爱情中愿意放手(→3)"
+  emotional_volatility:
+    baseline: 4  # 偏稳定
+    exception: "被背叛时彻底失控(→10)"
+  moral_flexibility:
+    baseline: 3  # 偏原则
+    exception: "为保护女儿可以突破一切底线(→9)"
+```
+
+- `baseline` 决定日常场景下的默认行为
+- `exception` 定义戏剧性反转的触发条件 — 这是角色弧光最闪亮的时刻，也是情节设计的弹药
+
+#### Axis Contrast Map (维度对比图)
+
+设计主要角色群（3–5 人核心阵容）后，必须附加 Axis Contrast Map，标注关键角色对之间的维度对抗：
+
+```yaml
+axis_contrast:
+  - pair: [主角, 反派]
+    key_opposition: moral_flexibility  # 3 vs 9
+    narrative_function: "核心价值观对撞——同一个目标，截然不同的代价底线"
+  - pair: [主角, 盟友A]
+    key_opposition: conflict_response  # 3 vs 8
+    narrative_function: "面对同一危机，一个要正面硬刚，一个要迂回求全"
+  - pair: [盟友A, 盟友B]
+    key_opposition: trust_baseline  # 8 vs 2
+    narrative_function: "团队内部的信任裂缝，第三幕分裂的伏笔"
+```
+
+**Rules:**
+- Every major character pair must have at least **1 axis in strong opposition** (baseline difference ≥ 5)
+- Every strong opposition must produce **at least one conflict scene** in the outline
+- Every character's `exception` must be **triggered at least once** in the story
+
+### Outlining — Fractal Tension / 分形张力
+- Design tension at every scale simultaneously: arc-level reversals, chapter-level turning points, scene-level micro-conflicts, paragraph-level information gaps. A reader zooming into any granularity should find rises and falls.
+- The main arc is a low-frequency, high-amplitude wave; scene-level hooks are high-frequency, smaller-amplitude waves. Both must run concurrently — micro-conflicts must propel the macro arc, not just fill space between plot points.
 - Each chapter must advance at least one of: main plot, character arc, world revelation.
-- Pacing: alternate tension and release. Never let 3 consecutive chapters sit at the same intensity level.
+- Never let 3 consecutive chapters sit at the same intensity level. Alternate peaks and valleys deliberately.
 - Plant setups early. Every major payoff in the back half should have roots in the first third.
 - Subplots must intersect with the main plot by the midpoint — no orphan threads.
+- In L3 beat sheets, explicitly mark the micro-conflict or tension source for each scene — if a scene has no resistance, it has no reason to exist.
 
 ### Iteration Behavior
 - On receiving Structure Critic feedback: address EVERY point rated below 7.0.
