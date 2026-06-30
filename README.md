@@ -2,7 +2,7 @@
 
 ## What is Bragi?
 
-Bragi is a multi-agent harness for generating high-quality web novels. It uses a GAN-inspired architecture: Generator agents (Architect, Writer) produce content, Critic agents (Structure Critic, Prose Critic) evaluate and provide feedback, and the cycle iterates until quality thresholds are met.
+Bragi is a multi-agent harness for generating high-quality web novels. It uses a GAN-inspired architecture: Generator agents (Architect, Writer) produce content, Critic agents (Structure Critic, Prose Critic, Security Critic) evaluate and provide feedback, and the cycle iterates until quality thresholds are met.
 
 Named after the Norse god of poetry — son of Odin.
 
@@ -14,10 +14,12 @@ bragi/
 │   ├── architect.md     # World-building + plotting (L0-L3)
 │   ├── architecture-critic.md  # Evaluates structure quality
 │   ├── writer.md        # Generates chapter prose (L4)
-│   └── writing-critic.md  # Evaluates prose quality
+│   ├── writing-critic.md  # Evaluates prose quality
+│   └── security-critic.md   # Content + copyright security review (Phase 7)
 ├── rubrics/             # Scoring criteria
 │   ├── architecture-rubric.md  # 6 dimensions for L0-L3
-│   └── writing-rubric.md      # 8 dimensions for L4
+│   ├── writing-rubric.md      # 8 dimensions for L4
+│   └── security-rubric.md     # Content + copyright security clauses (Phase 7)
 ├── templates/           # Input/state templates
 │   ├── brief.yaml       # Novel brief input format (blank)
 │   ├── demo-brief.yaml  # Example novel brief (filled in)
@@ -57,6 +59,7 @@ All agents communicate via files. No direct message passing.
 - Pass: weighted score >= 7.0/10, no single dimension below 5.0
 - Structure layer: max 5 iteration rounds
 - Prose layer: max 3 iteration rounds per chapter
+- Security review (Phase 7, full manuscript): max 3 iteration rounds; PASS requires zero CRITICAL and zero HIGH violations
 - If threshold not met at max rounds: flag for human intervention
 
 ### Human Checkpoints

@@ -1,0 +1,5 @@
+# Demo artifacts (generated outputs, runtime caches, DBs)
+demo/
+
+# macOS
+.DS_Store

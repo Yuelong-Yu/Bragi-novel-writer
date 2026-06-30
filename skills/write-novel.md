@@ -112,34 +112,48 @@ For each volume (1 to `brief.volumes`):
 
 ### Phase 6: L4 — Prose Generation
 
-**Agent**: Writer (`agents/writer.md`)
+**Agent**: Writer (`agents/writer.md`); **Critic**: Writing Critic (`agents/writing-critic.md`).
 
-For each chapter in order:
-1. Set `current_phase: L4_writing`, `current_chapter: {NNN}`
-2. Writer reads:
-   - Chapter outline (`outline/L3-chapters/vol{N}-ch{NNN}.md`)
-   - World bible (`world/`)
-   - Style guide (`world/style-guide.md`)
-   - Previous 2 chapters (for continuity)
-3. Writer writes: `manuscript/vol{N}/ch{NNN}.md`
-4. Prose Critic (`agents/writing-critic.md`) evaluates with `rubrics/writing-rubric.md`
-5. Critic writes: `feedback/prose-ch{NNN}-r{N}.md`
-6. Check verdict:
-   - **PASS** → update state, move to next chapter
-   - **FAIL** → feed feedback to Writer, iterate
-   - **Max rounds reached** → `human_flag`, pause
-7. Update metrics in state after each chapter
+For each chapter in order, the orchestrator delegates the per-chapter loop to the `bragi_write.py` CLI. The CLI handles: building the 4-layer context pack from the SQLite store, writing the writer request file, gating result via V2.5 evidence + ID-collision checks, iterating with feedback, and ingesting the passed chapter back into the DB so the next chapter's pack is fresh.
+
+1. Set `current_phase: L4_writing`, `current_chapter: {NNN}`.
+2. Invoke per chapter:
+   ```bash
+   demo/.venv/bin/python demo/runtime/bragi_write.py \
+       --chapter {NNN} --volume {N} \
+       --brief outline/L3-chapters/vol{N}-ch{NNN}.md \
+       --executor=file
+   ```
+   The orchestrator drops `output_octopus/_new_writer_pending/v{N}-ch{NNN}-r1.md` and exits (`returncode=1`). This file is the Writer request — it bundles the chapter brief, the 4-layer context pack (recent prose / state snapshot / open promises / character knowledge), and the explicit output contract.
+3. Spawn the Writer agent against that request file (Writer reads `world/`, the chapter outline, and the pack). Writer outputs **two** files into `output_octopus/_new_writer_result/`:
+   - `v{N}-ch{NNN}-r{R}.md` — prose
+   - `v{N}-ch{NNN}-r{R}.events.yaml` — sidecar (mandatory; per `agents/writer.md` § Sidecar Emission)
+4. Spawn the Writing Critic against the same prose + sidecar; Critic reads `rubrics/writing-rubric.md` and writes a markdown critique. Critic ALSO performs sidecar verification (per `agents/writing-critic.md` § Sidecar Verification) and folds the findings into the report.
+5. Re-invoke `bragi_write.py` — the CLI auto-detects the filled result files, runs its programmatic critic (evidence + id hygiene), and either:
+   - **PASS** (programmatic) → calls `_ingest_new_chapter` → next chapter
+   - **FAIL** → writes `_new_writer_feedback/v{N}-ch{NNN}-r{R}.md` and advances round
+6. Independently honor the Writing Critic's quality verdict: if Critic FAILs but bragi_write PASSes, treat the round as FAIL and write a manual feedback file before re-invoking.
+7. **Max rounds reached** → `human_flag`, pause.
+8. Update metrics in state after each chapter.
+
+**Why two critics?** `bragi_write` enforces machine-checkable invariants (evidence reverification, id collisions, sidecar structure) — fast and deterministic. The Writing Critic enforces taste (prose rubric: voice, pacing, dimensionality, fractal tension, cinematic visualization). Both must pass for the chapter to move on.
 
 ### Phase 7: Finalize
 
 1. Concatenate all chapters into `final/full-novel.md`
-2. Generate `final/stats.md` with:
+2. **Security review (full-manuscript)** — invoke Security Critic (`agents/security-critic.md`) against `final/full-novel.md`. The critic screens for content-security (23 statutory clauses) and copyright-security (名誉权 + 知识产权) violations and writes `feedback/security-full-r{N}.md`.
+   - **PASS** (zero CRITICAL, zero HIGH) → proceed to step 3.
+   - **FAIL** → parse the violation list, route each violation to the chapter it belongs to, and feed the directives back to the Writer for that chapter. Re-run only the Writing Critic on the changed chapters (security fixes must not regress prose quality). After all flagged chapters pass their prose re-check, re-concatenate `final/full-novel.md` and re-invoke the Security Critic. Increment round counter.
+   - **Max rounds reached** (`max_security_rounds`, default 3) → set `status: human_flag`, pause for intervention. Never silently ship a failing manuscript.
+   - **Note**: Security review is independent of the Writing Critic. A chapter that previously passed prose may be flagged here; the security gate overrides craft quality. Adaptation and expansion modes carry elevated IP risk — review those manuscripts with extra scrutiny.
+3. Generate `final/stats.md` with:
    - Total word count
    - Per-chapter word counts
    - Final scores per chapter
    - Total iterations used
    - Chapters that needed human intervention
-3. Set `status: completed`
+   - Security review verdict + rounds used + violation count by severity
+4. Set `status: completed`
 
 ## State Machine Transitions
 
@@ -171,8 +185,11 @@ All agent coordination happens through files:
 |-------|-------|--------|
 | Architect | `brief.yaml`, `feedback/structure-review-*.md` | `world/*`, `outline/*` |
 | Structure Critic | `world/*`, `outline/*`, `brief.yaml`, `rubrics/architecture-rubric.md` | `feedback/structure-review-*.md` |
-| Writer | `outline/L3-chapters/*`, `world/*`, `manuscript/*` (prev chapters), `feedback/prose-*.md` | `manuscript/vol*/ch*.md` |
-| Prose Critic | `manuscript/vol*/ch*.md`, `outline/L3-chapters/*`, `world/style-guide.md`, `rubrics/writing-rubric.md` | `feedback/prose-*.md` |
+| Writer | `outline/L3-chapters/*`, `world/*`, `output_octopus/_new_writer_pending/*` (bundled brief + 4-layer pack), `output_octopus/_new_writer_feedback/*` | `output_octopus/_new_writer_result/*.md`, `output_octopus/_new_writer_result/*.events.yaml` |
+| Prose Critic | `output_octopus/_new_writer_result/*` (prose + sidecar), `outline/L3-chapters/*`, `world/style-guide.md`, `rubrics/writing-rubric.md` | `feedback/prose-*.md` |
+| Security Critic | `final/full-novel.md` (or per-chapter prose), `brief.yaml`, `world/*` | `feedback/security-*.md` |
+| `bragi_write.py` (orchestrator helper) | brief + DB | request files, programmatic critic feedback, chapter_versions ingestion |
+| `bragi_expand.py` (chapter expansion) | DB + original sidecar + target_chars | E2/E3 validator output, expansions/* artifacts, DB version bump |
 | Orchestrator | `state.yaml`, all of the above | `state.yaml`, `final/*` |
 
 No direct agent-to-agent message passing. The orchestrator mediates all communication by reading outputs and passing them as inputs to the next agent.

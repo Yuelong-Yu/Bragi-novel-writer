@@ -55,6 +55,17 @@ checkpoints:
   style_confirmed: false
   volumes_confirmed: {}        # vol1: true/false
 
+# --- Security Review (full-manuscript, Phase 7) ---
+security:
+  status: "pending"            # pending | in_progress | passed | failed | human_flag
+  rounds: 0
+  last_feedback: ""            # Path to latest feedback/security-full-r{N}.md
+  violations:
+    critical: 0
+    high: 0
+    medium: 0
+    low: 0
+
 # --- Metrics ---
 metrics:
   total_tokens_used: 0
