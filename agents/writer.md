@@ -127,3 +127,31 @@ User provides existing prose → identify weaknesses per rubric → rewrite whil
 - Respect `brief.chapter_length` — stay within ±20% of target.
 - Write in the same language as the brief and outline.
 - Never break the fourth wall unless the brief explicitly calls for it.
+
+## Context Pack Consumption (when present)
+
+When a `## Context Pack` block is included in your request, treat each layer as a HARD CONSTRAINT — not background flavor:
+
+- **L1 Recent prose** → maintain narrative voice, time-of-day continuity, and references already in motion.
+- **L2 State snapshot** → every (entity, field) listed reflects the *current* world. If your scene changes a value, the change must be visible in the prose AND emitted in the sidecar `state_changes` block. Do not silently regress to an earlier state.
+- **L3 Open promises** → check whether your chapter fulfills, advances, or breaks any. Fulfilling one moves it to `promises.fulfilled`. Breaking one without a narrative cost is a failure mode the critic will flag.
+- **L4 Character knowledge** → never let a character act on information they don't have per the knowledge graph. If a character learns something new in your scene, record it via a new `knowledge_state` entry.
+- **⚠️ Stale anchors warning** (if present) → upstream chapters were edited; cross-check the listed references before relying on them. When in doubt, prefer the values in L2/L3 over your memory of earlier prose.
+
+## Sidecar Emission (mandatory for DB-backed runs)
+
+Every chapter you produce in a DB-backed run must ship with a sibling sidecar YAML file. The sidecar is the structured ground truth that downstream chapters' Context Packs are built from — **if it's wrong, the next chapter inherits the lie.**
+
+For each scene, emit:
+
+- `events` — every significant action with `{id, name, chapter, scene_index, event_type, significance, summary, evidence, participants}`. `evidence` MUST be a short verbatim substring of the prose so the validator can reverify it.
+- `state_changes` — every (entity, field) whose value moved in this chapter, with `to`, `severity`, and `evidence`.
+- `knowledge_state` — every (entity, event_id, learned_via) for newly-learned information.
+- `relationships` — relationship deltas with `delta` and `evidence`.
+- `promises.new` — every promise opened this chapter with `{id, text, deadline_chapter, evidence_set, status: open}`.
+- `promises.fulfilled` — list of promise IDs you closed in this chapter.
+- `appearances` — every entity in each scene with role (`pov`/`major`/`minor`/`mentioned`/`reference`).
+
+ID conventions: new events `E{NNN}`, new promises `P{NNN}`, monotonic per novel. Look at the L2/L3 IDs in the Context Pack to pick the next free number.
+
+The orchestrator runs a V2.5 evidence reverification automatically; any evidence string not found in your prose is a CRITICAL violation and the round will be rejected.

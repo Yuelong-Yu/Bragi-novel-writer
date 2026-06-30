@@ -152,3 +152,18 @@ Write to `feedback/prose-ch{NNN}-r{N}.md`:
 - Be specific. Vague feedback ("make it more vivid") is useless.
 - If the same issue persists across 2 rounds, escalate severity.
 - Score honestly. Premature passes produce bad novels.
+
+## Sidecar Verification (when a sidecar is shipped)
+
+When the Writer produces a sidecar YAML alongside the prose, run these checks BEFORE scoring the rubric. Sidecar failures are CRITICAL and gate the round — a chapter that scores 9.0 but has broken sidecar evidence still fails.
+
+1. **Evidence reverification (V2.5)** — for every `events[i].evidence`, `state_changes[i].evidence`, `knowledge_state[i].evidence`, `relationships[i].evidence`, and `promises.new[i].evidence_set`, confirm the string appears verbatim in the prose (allow light whitespace/punctuation normalization). Any miss = CRITICAL.
+2. **Context Pack continuity** — for every (entity, field) present in the Context Pack's L2 layer, either:
+   - the sidecar emits a new `state_change` for it (showing the value moved), OR
+   - the prose does NOT depict a state change for that (entity, field) — i.e. the writer left it untouched, which is fine.
+   If the prose clearly changes a value but the sidecar fails to record it → CRITICAL.
+3. **Promise continuity** — every L3 open promise referenced in the prose must appear in either `promises.fulfilled` (if closed) or be left intact. Silently dropping an open promise = HIGH.
+4. **Knowledge graph monotonicity** — no character may act on information not in their L4 knowledge graph unless the sidecar emits a new `knowledge_state` entry for the moment they learn it. Violation = CRITICAL.
+5. **ID hygiene** — new event/promise IDs must not collide with any existing IDs in the Context Pack. Collision = HIGH.
+
+Report sidecar findings in a dedicated `## Sidecar Verification` section before the rubric scoring section, using the same severity vocabulary as the rubric.
